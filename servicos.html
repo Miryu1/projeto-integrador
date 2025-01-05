@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Serviços - Viagem Gourmet</title>
+</head>
+<body>
+
+    <!-- Navegação -->
+    <nav>
+        <div class="logo">
+            <a href="index.html">Viagem Gourmet</a>
+        </div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="precos.html">Preços</a></li>
+            <li><a href="servicos.html">Serviços</a></li>
+            <li><a href="contato.html">Contato</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+
+        <!-- Informações do Usuário -->
+        <div id="user-info" class="user-profile"></div>
+    </nav>
+
+    <!-- Seção Serviços -->
+    <section class="servicos">
+        <h2>Nossos Serviços</h2>
+        <p class="descricao">Explore nossas categorias de pacotes de viagem e escolha a experiência que mais combina com você.</p>
+
+        <div class="card-container">
+            <div class="card">
+                <div class="card-icon">🍴</div>
+                <h3>Experiência Gourmet em Paris</h3>
+                <p>Desfrute de um tour exclusivo pelos melhores restaurantes e mercados parisienses.</p>
+                <a href="paris.html"><button>Saiba Mais</button></a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🍝</div>
+                <h3>Exploração Culinária na Itália</h3>
+                <p>Descubra o sabor autêntico da Itália, com visitas a vinícolas e degustações de massas tradicionais.</p>
+                <a href="italia.html"><button>Saiba Mais</button></a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🎎</div>
+                <h3>Jornada Cultural no Japão</h3>
+                <p>Explore o Japão como nunca antes, com visitas a templos antigos e oficinas de artes tradicionais.</p>
+                <a href="japao.html"><button>Saiba Mais</button></a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">❄️</div>
+                <h3>Aventura na Patagônia</h3>
+                <p>Prepare-se para uma aventura nas paisagens geladas da Patagônia, com trilhas e esportes radicais.</p>
+                <a href="patagonia.html"><button>Saiba Mais</button></a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Função para exibir as informações do usuário
+        document.addEventListener('DOMContentLoaded', () => {
+            const userInfoDiv = document.getElementById('user-info');
+            const userData = JSON.parse(localStorage.getItem('userProfile'));
+
+            if (userData) {
+                userInfoDiv.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 10px; margin-left: auto;">
+                        <img src="${userData.foto}" alt="Foto de Perfil" style="width: 40px; height: 40px; border-radius: 50%;">
+                        <span style="color: white;">Olá, ${userData.nome}!</span>
+                    </div>
+                `;
+            }
+        });
+    </script>
+
+</body>
+</html>

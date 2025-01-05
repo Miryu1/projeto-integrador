@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Experiência Gourmet em Paris</title>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <a href="index.html">Viagem Gourmet</a>
+        </div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="servicos.html">Serviços</a></li>
+        </ul>
+    </nav>
+
+    <section class="detalhes-destino">
+        <h2>Experiência Gourmet em Paris</h2>
+        <p>Preço: <strong>R$ 4.500,00 por pessoa</strong></p>
+        <form id="form-paris">
+            <label>Quantidade de Passageiros:</label>
+            <input type="number" id="passageiros-paris" min="1" required>
+
+            <label>Idade do Passageiro:</label>
+            <select>
+                <option>Adulto</option>
+                <option>Criança</option>
+            </select>
+
+            <label>Data de Ida:</label>
+            <input type="date" required>
+
+            <label>Data de Volta (opcional):</label>
+            <input type="date">
+
+            <label>Local de Saída:</label>
+            <input type="text" required>
+
+            <button type="submit">Buscar Passagens</button>
+        </form>
+    </section>
+
+    <section class="resultados">
+        <h3>Voos Disponíveis</h3>
+        <p>Voo 1: 08:00 - 12:00 | R$ 4.500,00</p>
+        <p>Voo 2: 14:00 - 18:00 | R$ 4.500,00</p>
+    </section>
+
+    <section class="pagamento">
+        <h3>Formas de Pagamento</h3>
+        <ul>
+            <li>Pix</li>
+            <li>Cartão de Crédito ou Débito</li>
+            <li>Boleto</li>
+        </ul>
+    </section>
+</body>
+</html>

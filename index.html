@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Viagem Gourmet</title>
+</head>
+<body>
+    <!-- Navegação -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html">Viagem Gourmet</a>
+        </div>
+        <ul class="menu-desktop">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="servicos.html">Serviços</a></li>
+            <li><a href="contato.html">Contato</a></li>
+            <li><a href="sobre.html">História</a></li>
+        </ul>
+        <div class="menu-usuario">
+            <a href="login.html" class="btn-login">Login</a>
+        </div>
+    </nav>
+
+    <!-- Banner -->
+    <header class="banner">
+        <div class="conteudo-banner">
+            <h1>Transforme cada destino<br>em uma memória deliciosa.</h1>
+            <p>Descubra experiências inesquecíveis unindo viagem e gastronomia.</p>
+            <a href="servicos.html" class="btn-cta">Explore agora</a>
+        </div>
+    </header>
+
+    <!-- Sobre -->
+    <section class="sobre">
+        <div class="container">
+            <h2>Sobre nós</h2>
+            <p>O Viagem Gourmet é especialista em transformar suas viagens em aventuras gastronômicas únicas. Nossa missão é conectar você com a cultura, sabores e histórias por trás de cada destino.</p>
+        </div>
+    </section>
+
+    <!-- Destaques -->
+    <section class="destaques">
+        <div class="container">
+            <h2>Nossos serviços</h2>
+            <div class="cards">
+                <div class="card">
+                    <h3>Roteiros Exclusivos</h3>
+                    <p>Personalizamos suas viagens com experiências autênticas.</p>
+                </div>
+                <div class="card">
+                    <h3>Gastronomia Local</h3>
+                    <p>Explore os sabores mais icônicos e secretos do destino.</p>
+                </div>
+                <div class="card">
+                    <h3>Conforto Garantido</h3>
+                    <p>Hospede-se nos melhores hotéis e aproveite a tranquilidade.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="rodape">
+        <p>&copy; 2025 Viagem Gourmet - Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const userData = JSON.parse(localStorage.getItem('userProfile'));
+
+            if (userData) {
+                // Remover o botão de login
+                const loginButton = document.querySelector('.btn-login');
+                if (loginButton) {
+                    loginButton.style.display = 'none';
+                }
+
+                // Exibir a foto de perfil e nome do usuário
+                const nav = document.querySelector('nav .menu-usuario');
+                const userProfileContainer = document.createElement('div');
+                userProfileContainer.style.display = 'flex';
+                userProfileContainer.style.alignItems = 'center';
+
+                const userImg = document.createElement('img');
+                userImg.src = userData.foto;
+                userImg.alt = 'Foto de Perfil';
+                userImg.style.width = '40px';
+                userImg.style.height = '40px';
+                userImg.style.borderRadius = '50%';
+                userImg.style.marginRight = '10px';
+
+                const userName = document.createElement('span');
+                userName.textContent = userData.nome;
+                userName.style.fontSize = '14px';
+                userName.style.color = '#333';
+
+                userProfileContainer.appendChild(userImg);
+                userProfileContainer.appendChild(userName);
+
+                // Substituir o botão de login pela foto de perfil
+                nav.appendChild(userProfileContainer);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.querySelector('#profileForm'); // Formulário de envio de dados
+        const uploadInput = document.querySelector('#fotoInput'); // Input de upload de foto
+        const saveButton = document.querySelector('#saveButton'); // Botão de salvar perfil
+
+        // Evento de salvar dados do perfil
+        saveButton.addEventListener('click', () => {
+            const nome = document.querySelector('#nomeInput').value.trim(); // Nome do usuário
+            const foto = uploadInput.files[0]; // Foto do usuário
+            
+            if (!nome || !foto) {
+                alert('Por favor, preencha todas as informações!');
+                return;
+            }
+
+            // Ler a imagem como Base64 para salvar no localStorage
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const fotoBase64 = e.target.result;
+
+                // Salvar dados no localStorage
+                const userProfile = {
+                    nome: nome,
+                    foto: fotoBase64
+                };
+                localStorage.setItem('userProfile', JSON.stringify(userProfile));
+
+                // Redirecionar para a página inicial
+                window.location.href = 'index.html';
+            };
+
+            reader.readAsDataURL(foto); // Converte a imagem em Base64
+        });
+    });
+</script>

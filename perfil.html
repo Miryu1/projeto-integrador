@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil - Viagem Gourmet</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <a href="index.html">Viagem Gourmet</a>
+        </div>
+        <ul class="menu-desktop" id="menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="precos.html">Preços</a></li>
+            <li><a href="servicos.html">Serviços</a></li>
+            <li><a href="contato.html">Contato</a></li>
+            <li id="loginButton"><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+
+    <section class="perfil">
+        <h2>Perfil</h2>
+        <div class="perfil-container">
+            <div class="foto-container">
+                <img id="fotoPerfil" src="default-profile.png" alt="Foto de Perfil">
+                <input type="file" id="uploadFoto" accept="image/*">
+            </div>
+            <div class="info-container">
+                <p><strong>Nome:</strong> <span id="nomePerfil"></span></p>
+                <p><strong>Email:</strong> <span id="emailPerfil"></span></p>
+            </div>
+            <button id="salvarFoto">Salvar Foto</button>
+        </div>
+    </section>
+
+    <script>
+        // Simula um banco de dados no localStorage
+        const userData = JSON.parse(localStorage.getItem('user')) || {};
+
+        // Preenche os dados do perfil
+        document.getElementById('nomePerfil').textContent = userData.nome || 'Nome não disponível';
+        document.getElementById('emailPerfil').textContent = userData.email || 'Email não disponível';
+
+        // Permite fazer upload da foto de perfil
+        const uploadFoto = document.getElementById('uploadFoto');
+        const fotoPerfil = document.getElementById('fotoPerfil');
+
+        uploadFoto.addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    fotoPerfil.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Botão para salvar a foto e redirecionar para a página inicial
+        const salvarFoto = document.getElementById('salvarFoto');
+        salvarFoto.addEventListener('click', function () {
+            if (fotoPerfil.src) {
+                // Salva a foto no "banco de dados" (localStorage)
+                userData.foto = fotoPerfil.src;
+                localStorage.setItem('user', JSON.stringify(userData));
+
+                // Redireciona para a página inicial
+                window.location.href = 'index.html';
+            }
+        });
+
+        // Atualiza o menu inicial ao carregar
+        window.onload = function () {
+            const menu = document.getElementById('menu');
+            const loginButton = document.getElementById('loginButton');
+
+            if (userData.nome) {
+                loginButton.style.display = 'none';
+                const perfilItem = document.createElement('li');
+                perfilItem.innerHTML = `<img src="${userData.foto || 'default-profile.png'}" alt="Foto de Perfil" class="menu-foto">`;
+                menu.appendChild(perfilItem);
+            }
+        };
+    </script>
+</body>
+</html>

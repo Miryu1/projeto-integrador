@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Login - Viagem Gourmet</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.querySelector("form");
+            const loginNavItem = document.querySelector('#loginNavItem');
+
+            // Verificar se o usuário já está logado
+            const loggedUser = localStorage.getItem('user');
+            if (loggedUser) {
+                loginNavItem.style.display = 'none';
+            }
+
+            form.addEventListener("submit", function (event) {
+                event.preventDefault();
+                const nome = document.querySelector('input[name="nome"]').value.trim();
+                const email = document.querySelector('input[name="email"]').value.trim();
+                const senha = document.querySelector('input[name="senha"]').value.trim();
+
+                if (nome && email && senha) {
+                    // Salvar informações do usuário no localStorage
+                    const user = { nome, email };
+                    localStorage.setItem('user', JSON.stringify(user));
+
+                    // Redirecionar para a página de perfil
+                    window.location.href = "perfil.html";
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <a href="index.html">Viagem Gourmet</a>
+        </div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="precos.html">Preços</a></li>
+            <li><a href="servicos.html">Serviços</a></li>
+            <li><a href="contato.html">Contato</a></li>
+            <li id="loginNavItem"><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+
+    <section class="inscricao">
+        <h2>Inscreva-se na Viagem Gourmet</h2>
+        <p class="descricao">Complete o formulário abaixo para se inscrever e aproveitar descontos exclusivos!</p>
+
+        <form>
+            <div class="form-group">
+                <input type="text" name="nome" placeholder="Nome Completo" required>
+            </div>
+            <div class="form-group">
+                <input type="email" name="email" placeholder="Seu E-mail" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="senha" placeholder="Crie uma Senha" required>
+            </div>
+            <button type="submit">Cadastrar</button>
+        </form>
+    </section>
+</body>
+</html>
